@@ -32,24 +32,26 @@ export class CameraPage {
         private barcodeScanner: BarcodeScanner,
         public http:Http) {
 
-          this.url = 'http://207.154.240.16:3003/';
+          this.url = 'http://207.154.240.16:3003/'; //please change it
         }
 
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad CameraPage');
-    }
+      results: {}; //json
 
-    ngOnInit() {
-        this.photos = [];
-    }
- scanBarcode() {
- this.barcodeScanner.scan().then((barcodeData) => {
- // Success! Barcode data is here
-}, (err) => {
-    // An error occurred
-});
-    }
+      async scan(){
+        this.results = await this.barcodeScanner.scan();
+        alert(this.results); //.text //.format //.cancelled
+        console.log(this.results);
 
+        let obj = JSON.parse(JSON.stringify(this.results)); //now this is in console type OBJECT
+        console.log(obj["text"]);
+        console.log(obj["format"]);
+        alert(obj["text"]);
+
+        //change route url in constructor and here
+        //change body to the request body (obj["text"])
+        //if get request, change get to post, and remove body, and modify url!
+
+      }
 
 
 
