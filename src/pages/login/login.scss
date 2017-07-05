@@ -1,0 +1,24 @@
+page-login {
+.showpassword{
+position: relative;
+right:-20em;
+bottom: 2em;
+}
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type=checkbox]:not(old) + label {
+display: inline-block;
+padding: 1px;
+line-height: 30px;
+background:url(https://cdn0.iconfinder.com/data/icons/woocons1/Checkbox%20Empty.png) left top no-repeat;
+background-size: 25px 25px;
+}
+.alCenter{
+	text-align:center;
+}
+button{
+	width:200px;
+}
+}
