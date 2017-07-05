@@ -20,11 +20,8 @@ import 'rxjs/add/operator/map';
 })
 export class CameraPage {
 
-    //**** NO ERROR HANDLING DONE
 
-    public photos: any;
-    public base64Image: string;
-           url:string;
+    url:string;
     //options: BarcodeScannerOptions;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera,
@@ -50,8 +47,26 @@ export class CameraPage {
         //change route url in constructor and here
         //change body to the request body (obj["text"])
         //if get request, change get to post, and remove body, and modify url!
+        //authentication change it in headers
 
-      }
+      /*  let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Access-Control-Allow-Origin', '*');
+        headers.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
+        //  headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
+
+        let body = {
+          QRcode: obj["text"],
+        };
+
+
+
+        this.http.post(this.url, JSON.stringify(body), new RequestOptions({headers:headers}))
+        .map(res => res).subscribe(data => {
+
+            //what if success? code here
+        });  */
+        }
 
 
 
