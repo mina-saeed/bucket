@@ -30,28 +30,27 @@ currentUser: User;
   public login(credentials) {
 
   console.log(credentials);
-  var headers = new Headers();
-  headers.append('Content-Type', 'application/json' );
-  let options = new RequestOptions({ headers: headers });
-  console.log(options);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
 
-  this.http.post("http://64.20.33.195/bucketUser/Service1.svc/Login", credentials, options)
-      .subscribe(data => {
-        console.log(data['_body']);
-      }, error => {
-        console.log(error);// Error getting the data
-      });
-    if (credentials.mobile === null || credentials.password === null) {
-      return Observable.throw("Please insert credentials");
-    } else {
-      return Observable.create(observer => {
-        // At this point make a request to your backend to make a real check!
-        let access = (credentials.password === "mina" && credentials.mobile === "mina");
-        this.currentUser = new User('mina', 'mina');
-        observer.next(access);
-        observer.complete();
-      });
-    }
+    this.http.post('http://64.20.33.195/bucketUser/Service1.svc/Login', JSON.stringify(credentials), new RequestOptions({headers:headers}))
+    .map(res => res).subscribe(data => {
+
+      alert('LOG: ' +data);
+
+      //code snippet, get status code, anything from response
+      let obj = JSON.parse(JSON.stringify(data)); //now this is in console type OBJECT
+      console.log(obj["_body"]);
+      var bodyArray = obj["_body"].split(',');
+      console.log(bodyArray[1]); //got deviceID, just an exmaple
+
+
+    });
+
+
+ 
   }
   public getUserInfo() : User {
     return this.currentUser;
