@@ -39,7 +39,7 @@ export class CameraPage {
 
       async scan(){
         this.results = await this.barcodeScanner.scan();
-        alert(this.results); //.text //.format //.cancelled
+        //alert(this.results); //.text //.format //.cancelled
         console.log(this.results);
 
         let obj = JSON.parse(JSON.stringify(this.results)); //now this is in console type OBJECT
