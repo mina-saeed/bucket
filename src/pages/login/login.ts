@@ -34,7 +34,9 @@ export class LoginPage {
     this.http.post('http://64.20.33.195/bucketUser/Service1.svc/ReturnAdminByEmailAndPassword', JSON.stringify(this.registerCred), new RequestOptions({headers:headers}))
     .map(res => res).subscribe(data => {
       //code snippet, get status code, anything from response
-      if(data["ReturnAdminByEmailAndPasswordResult"] == null){
+      let dataJSON = JSON.parse(data["_body"]);
+      console.log(dataJSON["ReturnAdminByEmailAndPasswordResult"]);
+      if(dataJSON["ReturnAdminByEmailAndPasswordResult"] == ""){
         console.log("Please enter valid user and pass");
         alert("Please enter a valid username or password!");
         this.loading.dismiss();
