@@ -9,7 +9,17 @@
 <ion-content padding>
   <button ion-button (click)="scan()">Scan Barcode/QR Code</button>
 
-  <div *ngIf="results">
-    <p>{{results.text}}</p>
+  <div *ngIf="resultsReservation">
+    <p>ID: {{resultsReservation.ReturnReservationByIdResult.ID}}</p>
+    <p>Number Of People: {{resultsReservation.ReturnReservationByIdResult.numberOfPeople}}</p>
+    <p>Reservation Attribute: {{resultsReservation.ReturnReservationByIdResult.reservationAttribute}}</p>
+    <p>Reservation End Date Time: {{resultsReservation.ReturnReservationByIdResult.reservationEndDateTime}}</p>
+    <p>Reservation Start Date Time: {{resultsReservation.ReturnReservationByIdResult.reservationStartDateTime}}</p>
+    <p>Reservation Status: {{resultsReservation.ReturnReservationByIdResult.reservationStatus}}</p>
+    <p>Reserver ID: {{resultsReservation.ReturnReservationByIdResult.reserverID}}</p>
+    <p>Total Paid: {{resultsReservation.ReturnReservationByIdResult.totalPaid}}</p>
+    <p>Total Price: {{resultsReservation.ReturnReservationByIdResult.totalPrice}}</p>
+    <p>User Name: {{resultsReservation.ReturnReservationByIdResult.userName}}</p>
+
   </div>
 </ion-content>

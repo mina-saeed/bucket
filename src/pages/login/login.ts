@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { Http,Headers,RequestOptions } from '@angular/http';
+import { CameraPage } from '../camera/camera';
 
 /**
  * Generated class for the LoginPage page.
@@ -29,15 +30,22 @@ export class LoginPage {
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
     headers.append('Content-Type', 'application/json');
-    console.log(JSON.stringify(this.registerCred)); 
+    console.log(JSON.stringify(this.registerCred));
     this.http.post('http://64.20.33.195/bucketUser/Service1.svc/ReturnAdminByEmailAndPassword', JSON.stringify(this.registerCred), new RequestOptions({headers:headers}))
     .map(res => res).subscribe(data => {
       //code snippet, get status code, anything from response
-      let obj = JSON.parse(JSON.stringify(data)); //now this is in console type OBJECT
-      var bodyArray = obj["_body"].split(',');
-      console.log(bodyArray);
-      this.nav.push('LandPage');
-      });
+      if(data["ReturnAdminByEmailAndPasswordResult"] == null){
+        console.log("Please enter valid user and pass");
+        alert("Please enter a valid username or password!");
+        this.loading.dismiss();
+      }else{
+        let obj = JSON.parse(JSON.stringify(data)); //now this is in console type OBJECT
+        var bodyArray = obj["_body"].split(',');
+        console.log(bodyArray);
+        this.nav.push(CameraPage);
+        }
+      }
+      );
   }
   showLoading() {
     this.loading = this.loadingCtrl.create({
@@ -46,10 +54,10 @@ export class LoginPage {
     });
     this.loading.present();
   }
- 
+
   showError(text) {
     this.loading.dismiss();
- 
+
     let alert = this.alertCtrl.create({
       title: 'Fail',
       subTitle: text,

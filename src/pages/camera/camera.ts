@@ -33,6 +33,7 @@ export class CameraPage {
         }
 
       results: {}; //json
+      resultsReservation: {};
 
       async scan(){
         this.results = await this.barcodeScanner.scan();
@@ -40,33 +41,26 @@ export class CameraPage {
         console.log(this.results);
 
         let obj = JSON.parse(JSON.stringify(this.results)); //now this is in console type OBJECT
-        console.log(obj["text"]);
-        console.log(obj["format"]);
-        alert(obj["text"]);
 
-        //change route url in constructor and here
-        //change body to the request body (obj["text"])
-        //if get request, change get to post, and remove body, and modify url!
-        //authentication change it in headers
-
-      /*  let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+        let headers = new Headers();
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
-        //  headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
+        headers.append('Content-Type', 'application/json');
 
-        let body = 
-         {"reservationId":"8850c258-fb5a-478d-b2a9-e6ce3d88b9b6"};
+        let body = {
+          "id": obj["text"]
+        };
 
-
-
-        this.http.post(this.url, JSON.stringify(body), new RequestOptions({headers:headers}))
+        this.http.post('http://64.20.33.195/bucketUser/Service1.svc/ReturnReservationById', body, new RequestOptions({headers:headers}))
         .map(res => res).subscribe(data => {
+          console.log(data);
 
-            //what if success? code here
-        });  */
+          let dataJSON = JSON.parse(data["_body"]);
+          this.resultsReservation = dataJSON;
+
+          //console.log(dataJSON);
+        //  console.log(dataJSON["ReturnReservationByIdResult"]["ID"]);
+          }
+          );
         }
-
-
-
 }
