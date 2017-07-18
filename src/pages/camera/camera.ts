@@ -29,7 +29,7 @@ export class CameraPage {
         private barcodeScanner: BarcodeScanner,
         public http:Http) {
 
-          this.url = 'http://207.154.240.16:3003/'; //please change it
+          this.url = 'http://64.20.33.195/ListBookingForEachUser'; //please change it
         }
 
       results: {}; //json
@@ -55,9 +55,8 @@ export class CameraPage {
         headers.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
         //  headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
 
-        let body = {
-          QRcode: obj["text"],
-        };
+        let body = 
+         {"reservationId":"8850c258-fb5a-478d-b2a9-e6ce3d88b9b6"};
 
 
 

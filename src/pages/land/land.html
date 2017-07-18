@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Bucket
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <button ion-button (click)="scan()">Scan Barcode/QR Code</button>
+
+  <div *ngIf="results">
+    <p>{{results.text}}</p>
+  </div>
+</ion-content>
