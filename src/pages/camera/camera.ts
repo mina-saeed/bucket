@@ -53,7 +53,7 @@ export class CameraPage {
 
         this.http.post('http://64.20.33.195/bucketUser/Service1.svc/ReturnReservationById', body, new RequestOptions({headers:headers}))
         .map(res => res).subscribe(data => {
-          console.log(data);
+          //console.log(data);
 
           let dataJSON = JSON.parse(data["_body"]);
           this.resultsReservation = dataJSON;

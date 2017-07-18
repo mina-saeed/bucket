@@ -10,7 +10,7 @@ import { CameraPage } from '../pages/camera/camera';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = CameraPage; //just to test
+  rootPage:any = 'LoginPage'; //just to test
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
