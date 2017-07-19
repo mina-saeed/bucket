@@ -34,6 +34,7 @@ export class CameraPage {
 
       results: {}; //json
       resultsReservation: {};
+      resultsNested: {};
 
       async scan(){
         this.results = await this.barcodeScanner.scan();

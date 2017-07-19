@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { Http,Headers,RequestOptions } from '@angular/http';
 import { CameraPage } from '../camera/camera';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 /**
  * Generated class for the LoginPage page.
@@ -19,7 +20,19 @@ export class LoginPage {
   email:any;
   password:any;
   registerCred = {email : '', password: '' };
-  constructor(public nav: NavController,private alertCtrl: AlertController, private loadingCtrl: LoadingController,public http: Http) {
+  checkedField:boolean;
+
+  constructor(private nativeStorage: NativeStorage, public nav: NavController,private alertCtrl: AlertController, private loadingCtrl: LoadingController,public http: Http) {
+    this.nativeStorage.getItem('rememberItem')
+  .then(
+    data => {
+      this.email = data["email"];
+      this.password = data["password"];
+      console.log(data);
+      console.log(data["email"]);
+    },
+    error => console.error("no data stored to remember", error)
+  );
   }
 
   public login() {
@@ -30,7 +43,7 @@ export class LoginPage {
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
     headers.append('Content-Type', 'application/json');
-    console.log(JSON.stringify(this.registerCred));
+//    console.log(JSON.stringify(this.registerCred));
     this.http.post('http://64.20.33.195/bucketUser/Service1.svc/ReturnAdminByEmailAndPassword', JSON.stringify(this.registerCred), new RequestOptions({headers:headers}))
     .map(res => res).subscribe(data => {
       //code snippet, get status code, anything from response
@@ -44,10 +57,20 @@ export class LoginPage {
         let obj = JSON.parse(JSON.stringify(data)); //now this is in console type OBJECT
         var bodyArray = obj["_body"].split(',');
         console.log(bodyArray);
-        this.nav.push(CameraPage);
+        this.nav.push(CameraPage); //to avoid back
+
+        //if remember me is checked in, update the local storage
+        if(this.checkedField == true){
+          this.nativeStorage.setItem('rememberItem', this.registerCred)
+            .then(
+                () => console.log('Remembered data!'),
+                  error => console.error('Error storing item', error)
+                );
+        }
+
         }
       }
-      );
+    );
   }
   showLoading() {
     this.loading = this.loadingCtrl.create({
@@ -66,6 +89,10 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present(prompt);
+  }
+
+  updateChecked(){
+     console.log('checked new state:' + this.checkedField);
   }
 
 }

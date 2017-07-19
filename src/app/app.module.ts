@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { MyApp } from './app.component';
 import { CameraPage } from '../pages/camera/camera';
@@ -32,6 +33,7 @@ import { CameraPage } from '../pages/camera/camera';
     SplashScreen,
     BarcodeScanner,
     Camera,
+    NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider
   ]
