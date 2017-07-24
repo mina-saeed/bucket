@@ -7,6 +7,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { ReservationDetailsPage } from '../reservation-details/reservation-details';
+
 /**
  * Generated class for the CameraPage page.
  *
@@ -30,6 +32,7 @@ export class CameraPage {
         public http:Http) {
 
           this.url = 'http://64.20.33.195/ListBookingForEachUser'; //please change it
+
         }
 
       results: {}; //json
@@ -59,9 +62,13 @@ export class CameraPage {
           let dataJSON = JSON.parse(data["_body"]);
           this.resultsReservation = dataJSON;
 
+          this.navCtrl.push(ReservationDetailsPage, {results: this.resultsReservation});
+
           //console.log(dataJSON);
         //  console.log(dataJSON["ReturnReservationByIdResult"]["ID"]);
-          }
+      }, err =>{
+        alert("Invalid barcode!")
+      }
           );
         }
 }

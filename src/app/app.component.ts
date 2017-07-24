@@ -5,12 +5,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { CameraPage } from '../pages/camera/camera';
+import { ReservationDetailsPage } from '../pages/reservation-details/reservation-details';
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = 'LoginPage'; //just to test
+  rootPage:any = CameraPage; //just to test
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

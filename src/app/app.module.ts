@@ -11,12 +11,14 @@ import { NativeStorage } from '@ionic-native/native-storage';
 
 import { MyApp } from './app.component';
 import { CameraPage } from '../pages/camera/camera';
+import { ReservationDetailsPage } from '../pages/reservation-details/reservation-details';
 
 
 @NgModule({
   declarations: [
     MyApp,
-    CameraPage
+    CameraPage,
+    ReservationDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { CameraPage } from '../pages/camera/camera';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    CameraPage
+    CameraPage,
+    ReservationDetailsPage
   ],
   providers: [
     StatusBar,
