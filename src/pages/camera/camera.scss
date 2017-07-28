@@ -10,5 +10,11 @@ page-camera {
     height: 100%;
     width: 70%;
     text-align: center;
+  }
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  transform: translate(-50%, -50%);
 }
 }
