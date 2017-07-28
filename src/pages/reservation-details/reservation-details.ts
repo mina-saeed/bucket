@@ -26,6 +26,21 @@ export class ReservationDetailsPage {
     x = new Date(parseInt(x.substr(6)));
     this.resultsReservation["ReturnReservationByIdResult"]["reservationStartDateTime"] = x;
     //alert(x);
+
+    let statusNumber = this.resultsReservation["ReturnReservationByIdResult"]["reservationStatus"];
+    let status = "";
+    if(statusNumber == 1) {
+      status = "Pending Venue Confirmation";
+    }else if(statusNumber == 2){
+      status = "Pending Payment";
+    }else if(statusNumber == 3){
+      status = " Accepted/Confirmed";
+    }else if(statusNumber== 4){
+      status = "Rejected";
+    }else if(statusNumber == 5){
+      status = "Cancelled";
+    }
+    this.resultsReservation["ReturnReservationByIdResult"]["reservationStatus"] = status;
   }
 
   ionViewDidLoad() {
