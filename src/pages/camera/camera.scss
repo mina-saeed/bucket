@@ -1,3 +1,14 @@
 page-camera {
 
+  //this will centre the title without any problem in android
+  //ios by default is centered (howeverm overriding styles in android wont work so custom style must be done)
+  .title.title-md {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 70%;
+    text-align: center;
+}
 }
