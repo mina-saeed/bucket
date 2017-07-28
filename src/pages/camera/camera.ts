@@ -70,5 +70,5 @@ export class CameraPage {
         alert("Invalid barcode!")
       }
           );
-        }
+        }       
 }
