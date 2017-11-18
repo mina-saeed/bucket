@@ -21,7 +21,7 @@ export class LoginPage {
   password:any;
   registerCred = {email : '', password: '' };
   checkedField:boolean;
-
+  splash = true;
   constructor(private nativeStorage: NativeStorage, public nav: NavController,private alertCtrl: AlertController, private loadingCtrl: LoadingController,public http: Http) {
     this.nativeStorage.getItem('rememberItem')
   .then(
@@ -34,7 +34,9 @@ export class LoginPage {
     error => console.error("no data stored to remember", error)
   );
   }
-
+  ionViewDidLoad() {
+    setTimeout(() => this.splash = false, 4000);
+  }
   public login() {
     this.showLoading()
     this.registerCred.email=this.email;
@@ -46,7 +48,7 @@ export class LoginPage {
     headers.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
     headers.append('Content-Type', 'application/json');
 //    console.log(JSON.stringify(this.registerCred));
-    this.http.post('http://64.20.33.195/bucketUser/Service1.svc/ReturnAdminByEmailAndPassword', JSON.stringify(this.registerCred), new RequestOptions({headers:headers}))
+    this.http.post('http://api.buckette.co/Service1.svc/ReturnAdminByEmailAndPassword', JSON.stringify(this.registerCred), new RequestOptions({headers:headers}))
     .map(res => res).subscribe(data => {
       //code snippet, get status code, anything from response
       let dataJSON = JSON.parse(data["_body"]);
@@ -55,7 +57,7 @@ export class LoginPage {
         console.log("Please enter valid user and pass");
         alert("Please enter a valid username or password!");
         this.loading.dismiss();
-      }else{
+      }else{ 
         let obj = JSON.parse(JSON.stringify(data)); //now this is in console type OBJECT
         var bodyArray = obj["_body"].split(',');
         console.log(bodyArray);

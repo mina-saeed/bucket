@@ -35,7 +35,7 @@ currentUser: User;
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
 
-    this.http.post('http://64.20.33.195/bucketUser/Service1.svc/Login', JSON.stringify(credentials), new RequestOptions({headers:headers}))
+    this.http.post('http://api.buckette.co/Service1.svc/Login', JSON.stringify(credentials), new RequestOptions({headers:headers}))
     .map(res => res).subscribe(data => {
 
       alert('LOG: ' +data);

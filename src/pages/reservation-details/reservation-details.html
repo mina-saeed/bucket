@@ -15,12 +15,12 @@
 
 <ion-content padding>
   <div *ngIf="resultsReservation">
+    <p><b>Guest Name:</b> {{resultsReservation.ReturnReservationByIdResult.userName}}</p>
+    <p><b>Reservation Status:</b> {{resultsReservation.ReturnReservationByIdResult.reservationStatus}}</p>
+    <p><b>Paid:</b> {{resultsReservation.ReturnReservationByIdResult.totalPaid}}</p>
+    <p><b>Total Price:</b> {{resultsReservation.ReturnReservationByIdResult.totalPrice}}</p>
     <p><b>Number Of People:</b> {{resultsReservation.ReturnReservationByIdResult.numberOfPeople}}</p>
     <p><b>Reservation End Date Time:</b> {{resultsReservation.ReturnReservationByIdResult.reservationEndDateTime }}</p>
     <p><b>Reservation Start Date Time:</b> {{resultsReservation.ReturnReservationByIdResult.reservationStartDateTime}}</p>
-    <p><b>Reservation Status:</b> {{resultsReservation.ReturnReservationByIdResult.reservationStatus}}</p>
-    <p><b>Total Paid:</b> {{resultsReservation.ReturnReservationByIdResult.totalPaid}}</p>
-    <p><b>Total Price:</b> {{resultsReservation.ReturnReservationByIdResult.totalPrice}}</p>
-    <p><b>User Name:</b> {{resultsReservation.ReturnReservationByIdResult.userName}}</p>
   </div>
 </ion-content>
